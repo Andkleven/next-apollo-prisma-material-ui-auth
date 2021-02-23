@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "prisma.prisma",
+        "gicentre.markdown-preview-enhanced-with-litvis",
+        "apollographql.vscode-apollo",
+        "kumar-harsh.graphql-for-vscode",
+        "esbenp.prettier-vscode",
+        "coenraads.bracket-pair-colorizer",
+        "formulahendry.auto-close-tag",
+        "mikestead.dotenv",
+        "xabikos.javascriptsnippets",
+        "pkief.material-icon-theme"
+    ]
+}
