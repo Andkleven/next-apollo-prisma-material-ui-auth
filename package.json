@@ -5,21 +5,31 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "studio": "npx prisma studio"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.11",
+    "@material-ui/core": "^4.11.3",
     "@nexus/schema": "^0.20.1",
-    "@prisma/client": "^2.16.0",
+    "@prisma/client": "2.17",
     "apollo-server-micro": "^2.21.0",
     "graphql": "^15.5.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-middleware": "^6.0.4",
+    "graphql-shield": "^7.5.0",
     "next": "10.0.7",
+    "next-auth": "^3.5.1",
     "nexus": "^1.0.0",
-    "nexus-plugin-prisma": "^0.30.0",
+    "nexus-plugin-prisma": "^0.31.0",
+    "nexus-prisma": "^0.3",
+    "nodemailer": "^6.4.18",
     "prisma": "2.17.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "@types/next-auth": "^3.1.24",
     "@types/react": "^17.0.2",
     "typescript": "^4.1.5"
   }

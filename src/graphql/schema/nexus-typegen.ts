@@ -3,10 +3,24 @@
  * Do not make changes to this file directly
  */
 
-import * as Context from "./src/context"
-
-
-
+import * as Context from "./../context"
+import { core } from "@nexus/schema"
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    /**
+     * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Date";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    /**
+     * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+  }
+}
 declare global {
   interface NexusGenCustomOutputProperties<TypeName extends string> {
     crud: NexusPrisma<TypeName, 'crud'>
@@ -19,66 +33,18 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  CompanyCreateInput: { // input type
-    description?: string | null; // String
-    employee?: NexusGenInputs['EmployeeCreateNestedOneWithoutCompanyInput'] | null; // EmployeeCreateNestedOneWithoutCompanyInput
+  UserCreateInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email?: string | null; // String
+    emailVerified?: NexusGenScalars['DateTime'] | null; // DateTime
+    image?: string | null; // String
     name?: string | null; // String
-    symbol?: string | null; // String
+    role?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
-  CompanyUpdateInput: { // input type
-    description?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    employee?: NexusGenInputs['EmployeeUpdateOneWithoutCompanyInput'] | null; // EmployeeUpdateOneWithoutCompanyInput
-    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    symbol?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-  }
-  CompanyWhereUniqueInput: { // input type
+  UserWhereUniqueInput: { // input type
+    email?: string | null; // String
     id?: number | null; // Int
-  }
-  EmployeeCreateNestedOneWithoutCompanyInput: { // input type
-    connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutCompanyInput'] | null; // EmployeeCreateOrConnectWithoutCompanyInput
-    create?: NexusGenInputs['EmployeeCreateWithoutCompanyInput'] | null; // EmployeeCreateWithoutCompanyInput
-  }
-  EmployeeCreateOrConnectWithoutCompanyInput: { // input type
-    create: NexusGenInputs['EmployeeCreateWithoutCompanyInput']; // EmployeeCreateWithoutCompanyInput!
-    where: NexusGenInputs['EmployeeWhereUniqueInput']; // EmployeeWhereUniqueInput!
-  }
-  EmployeeCreateWithoutCompanyInput: { // input type
-    age: number; // Int!
-    name: string; // String!
-  }
-  EmployeeUpdateOneWithoutCompanyInput: { // input type
-    connect?: NexusGenInputs['EmployeeWhereUniqueInput'] | null; // EmployeeWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['EmployeeCreateOrConnectWithoutCompanyInput'] | null; // EmployeeCreateOrConnectWithoutCompanyInput
-    create?: NexusGenInputs['EmployeeCreateWithoutCompanyInput'] | null; // EmployeeCreateWithoutCompanyInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['EmployeeUpdateWithoutCompanyInput'] | null; // EmployeeUpdateWithoutCompanyInput
-    upsert?: NexusGenInputs['EmployeeUpsertWithoutCompanyInput'] | null; // EmployeeUpsertWithoutCompanyInput
-  }
-  EmployeeUpdateWithoutCompanyInput: { // input type
-    age?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
-  }
-  EmployeeUpsertWithoutCompanyInput: { // input type
-    create: NexusGenInputs['EmployeeCreateWithoutCompanyInput']; // EmployeeCreateWithoutCompanyInput!
-    update: NexusGenInputs['EmployeeUpdateWithoutCompanyInput']; // EmployeeUpdateWithoutCompanyInput!
-  }
-  EmployeeWhereUniqueInput: { // input type
-    id?: number | null; // Int
-  }
-  IntFieldUpdateOperationsInput: { // input type
-    decrement?: number | null; // Int
-    divide?: number | null; // Int
-    increment?: number | null; // Int
-    multiply?: number | null; // Int
-    set?: number | null; // Int
-  }
-  NullableStringFieldUpdateOperationsInput: { // input type
-    set?: string | null; // String
-  }
-  StringFieldUpdateOperationsInput: { // input type
-    set?: string | null; // String
   }
 }
 
@@ -91,22 +57,19 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  Date: any
+  DateTime: any
 }
 
 export interface NexusGenObjects {
-  Company: { // root type
-    description?: string | null; // String
-    id: number; // Int!
-    name?: string | null; // String
-    symbol?: string | null; // String
-  }
-  Employee: { // root type
-    age: number; // Int!
-    id: number; // Int!
-    name: string; // String!
-  }
   Mutation: {};
   Query: {};
+  User: { // root type
+    email?: string | null; // String
+    id: number; // Int!
+    name?: string | null; // String
+    role?: string | null; // String
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -120,75 +83,44 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  Company: { // field return type
-    description: string | null; // String
-    employee: NexusGenRootTypes['Employee'] | null; // Employee
-    id: number; // Int!
-    name: string | null; // String
-    symbol: string | null; // String
-  }
-  Employee: { // field return type
-    age: number; // Int!
-    id: number; // Int!
-    name: string; // String!
-  }
   Mutation: { // field return type
-    createOneCompany: NexusGenRootTypes['Company']; // Company!
-    deleteOneCompany: NexusGenRootTypes['Company'] | null; // Company
-    updateOneCompany: NexusGenRootTypes['Company'] | null; // Company
+    createOneUser: NexusGenRootTypes['User']; // User!
   }
   Query: { // field return type
-    companies: NexusGenRootTypes['Company'][]; // [Company!]!
-    company: NexusGenRootTypes['Company'] | null; // Company
+    user: NexusGenRootTypes['User'] | null; // User
+  }
+  User: { // field return type
+    email: string | null; // String
+    id: number; // Int!
+    name: string | null; // String
+    role: string | null; // String
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  Company: { // field return type name
-    description: 'String'
-    employee: 'Employee'
-    id: 'Int'
-    name: 'String'
-    symbol: 'String'
-  }
-  Employee: { // field return type name
-    age: 'Int'
-    id: 'Int'
-    name: 'String'
-  }
   Mutation: { // field return type name
-    createOneCompany: 'Company'
-    deleteOneCompany: 'Company'
-    updateOneCompany: 'Company'
+    createOneUser: 'User'
   }
   Query: { // field return type name
-    companies: 'Company'
-    company: 'Company'
+    user: 'User'
+  }
+  User: { // field return type name
+    email: 'String'
+    id: 'Int'
+    name: 'String'
+    role: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createOneCompany: { // args
-      data: NexusGenInputs['CompanyCreateInput']; // CompanyCreateInput!
-    }
-    deleteOneCompany: { // args
-      where: NexusGenInputs['CompanyWhereUniqueInput']; // CompanyWhereUniqueInput!
-    }
-    updateOneCompany: { // args
-      data: NexusGenInputs['CompanyUpdateInput']; // CompanyUpdateInput!
-      where: NexusGenInputs['CompanyWhereUniqueInput']; // CompanyWhereUniqueInput!
+    createOneUser: { // args
+      data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
     }
   }
   Query: {
-    companies: { // args
-      after?: NexusGenInputs['CompanyWhereUniqueInput'] | null; // CompanyWhereUniqueInput
-      before?: NexusGenInputs['CompanyWhereUniqueInput'] | null; // CompanyWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    company: { // args
-      where: NexusGenInputs['CompanyWhereUniqueInput']; // CompanyWhereUniqueInput!
+    user: { // args
+      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
   }
 }

@@ -9,6 +9,11 @@
         "formulahendry.auto-close-tag",
         "mikestead.dotenv",
         "xabikos.javascriptsnippets",
-        "pkief.material-icon-theme"
+        "pkief.material-icon-theme",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "abusaidm.html-snippets",
+        "vscodeshift.material-ui-snippets",
+        "dsznajder.es7-react-js-snippets"
     ]
 }
